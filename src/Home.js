@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogList from "./BlogList";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([
@@ -14,13 +15,9 @@ const Home = () => {
 
   return (
     <div className="home">
-      {blogs.map((blog) => (
-        // Each UI component needs assigning a unique key for React to distinguish between them
-        <div className="blog-preview" key={blog.id}>
-          <h2>{blog.title}</h2>
-          <p>Written by {blog.author}</p>
-        </div>
-      ))}
+      {/* blogs={blogs} is called a prop */}
+      {/* Passing "blogs" to the BlogList component */}
+      <BlogList blogs={blogs} title="All Blogs" />
     </div>
   );
 };

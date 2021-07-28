@@ -15,9 +15,11 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/* blogs={blogs} is called a prop */}
-      {/* Passing "blogs" to the BlogList component */}
       <BlogList blogs={blogs} title="All Blogs" />
+      <BlogList
+        blogs={blogs.filter((blog) => blog.author === "mario")}
+        title="Mario's Blogs"
+      />
     </div>
   );
 };

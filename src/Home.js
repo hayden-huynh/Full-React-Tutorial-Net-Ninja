@@ -24,7 +24,7 @@ const Home = () => {
   // This can be when the UI is rendered for the first time or any subsequent re-rendering due to state changes
   // Avoid updating state inside this hook otherwise it will run into an infinite loop
   useEffect(() => {
-    console.log("usEffect run");
+    console.log("useEffect run");
     console.log(name);
     // Empty dependency list -> run only once at the first render
     // Any stateful value in the list -> run when the states of those values change

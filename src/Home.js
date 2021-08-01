@@ -2,31 +2,27 @@ import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState([
-    { title: "My new website", body: "lorem ipsum...", author: "mario", id: 1 },
-    { title: "Welcome party!", body: "lorem ipsum...", author: "yoshi", id: 2 },
-    {
-      title: "Web dev top tips",
-      body: "lorem ipsum...",
-      author: "mario",
-      id: 3,
-    },
-  ]);
+  // Initially set to null. Set data using setBlogs later on
+  const [blogs, setBlogs] = useState(null);
 
-  const handleDelete = (id) => {
-    const newBlogs = blogs.filter((blog) => blog.id !== id);
-    setBlogs(newBlogs);
-  };
-
+  // Fetch the data at the first render only -> No infinite loop
   useEffect(() => {
-    console.log("useEffect run");
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setBlogs(data);
+      });
   }, []);
 
   return (
     <div className="home">
-      <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
-      <button onClick={() => setName("Luigi")}>Change Name</button>
-      <p>{name}</p>
+      {/* Logical checking in React */}
+      {/* Logical AND operator &&. If the first expression evaluates to false, the second expression will not be executed and checked */}
+      {blogs && (
+        <BlogList blogs={blogs} title="All Blogs" />
+      )}
     </div>
   );
 };

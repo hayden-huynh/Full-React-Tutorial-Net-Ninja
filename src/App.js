@@ -1,21 +1,24 @@
 import Navbar from "./Navbar";
 import Home from "./Home";
+import Create from "./Create";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* Component outside of any Switch components are visible all the time */}
         <Navbar />
-
         <div className="content">
-          {/* All routes' content will be injected into this "content" div */}
-          {/* The Switch componet ensures that only one single route of all can be rendered */}
+          {/* Routes within the Switch component block will be compared against for matching in the order of top to bottom */}
           <Switch>
-            <Route path="/">
-              {/* Only show the content of / route/endpoint when the user visits here */}
+            {/* React Route matching checks each letters starting from left to right */}
+            {/* Hence, when we try to go to "/create", React will show contents of "/" because the "/" route is matched first */}
+            {/* Add "exact" to match the whole endpoint string exactly */}
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/create">
+              <Create />
             </Route>
           </Switch>
         </div>

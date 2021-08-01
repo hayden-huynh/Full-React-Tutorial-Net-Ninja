@@ -13,22 +13,14 @@ const Home = () => {
     },
   ]);
 
-  const [name, setName] = useState("Mario");
-
   const handleDelete = (id) => {
     const newBlogs = blogs.filter((blog) => blog.id !== id);
     setBlogs(newBlogs);
   };
 
-  // The useEffect hook is triggered whenever the UI is re-rendered.
-  // This can be when the UI is rendered for the first time or any subsequent re-rendering due to state changes
-  // Avoid updating state inside this hook otherwise it will run into an infinite loop
   useEffect(() => {
     console.log("useEffect run");
-    console.log(name);
-    // Empty dependency list -> run only once at the first render
-    // Any stateful value in the list -> run when the states of those values change
-  }, [name]);
+  }, []);
 
   return (
     <div className="home">

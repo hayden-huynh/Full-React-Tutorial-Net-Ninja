@@ -2,27 +2,28 @@ import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
 
 const Home = () => {
-  // Initially set to null. Set data using setBlogs later on
   const [blogs, setBlogs] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
-  // Fetch the data at the first render only -> No infinite loop
   useEffect(() => {
-    fetch("http://localhost:8000/blogs")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBlogs(data);
-      });
+    // Trigger the fetch after 1000 miliseconds to simulate loading
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setBlogs(data);
+          setIsPending(false); // Discard "Loading..." when data is done being retrieved
+        });
+    }, 1000);
   }, []);
 
   return (
     <div className="home">
-      {/* Logical checking in React */}
-      {/* Logical AND operator &&. If the first expression evaluates to false, the second expression will not be executed and checked */}
-      {blogs && (
-        <BlogList blogs={blogs} title="All Blogs" />
-      )}
+      {/* Only when the left expression is true will the right expression be executed (component be rendered) */}
+      {isPending && <div>Loading...</div>}
+      {blogs && <BlogList blogs={blogs} title="All Blogs" />}
     </div>
   );
 };

@@ -1,32 +1,27 @@
 import Navbar from "./Navbar";
 import Home from "./Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
-  // const title = "Welcome to the new blog";
-  // const likes = 50;
-  // const person = { name: "john", age: 32 }; // Cannot output Boolean and Object in JSX
-  // const link = "http://www.google.com";
-
   return (
-    <div className="App">
-      <Navbar />
+    <Router>
+      <div className="App">
+        {/* Component outside of any Switch components are visible all the time */}
+        <Navbar />
 
-      <div className="content">
-        <Home />
-
-        {/* <h1>{title}</h1>
-        <p>Liked {likes} times</p> */}
-
-        {/* <p>{10}</p>
-        <p>{"Hello ninjas"}</p>
-        <p>{[1, 2, 3, 4, 5]}</p>
-        <p>{Math.random() * 10}</p>
-
-        <a href={link}>Google Search</a> */}
+        <div className="content">
+          {/* All routes' content will be injected into this "content" div */}
+          {/* The Switch componet ensures that only one single route of all can be rendered */}
+          <Switch>
+            <Route path="/">
+              {/* Only show the content of / route/endpoint when the user visits here */}
+              <Home />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
-// Always need to export the component function so it can be used in other files
 export default App;

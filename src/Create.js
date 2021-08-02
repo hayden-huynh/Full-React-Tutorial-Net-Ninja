@@ -28,7 +28,7 @@ const Create = () => {
   return (
     <div className="create">
       <h2>Add a New Blog</h2>
-      {/*  */}
+      {/* Assign handleSudmit as the callback for when the submit event is triggered */}
       <form onSubmit={handleSubmit}>
         <label>Blog title:</label>
         <input

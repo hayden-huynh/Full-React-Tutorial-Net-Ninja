@@ -22,6 +22,6 @@ npx create-react-app <project name>
   - Initially, the server will try to listen on port 3000. If that port is occupied, it will listen on the port we specify here.
   - Example:
     ```
-    npx json-server --watch <data/db.json> --port 8000
+    npx json-server --watch data/db.json --port 8000
     ```
 
